@@ -12,23 +12,25 @@
 	?x <- (initial-fact)
 	=>
 	(retract ?x)
-	(bind ?meanCP (ask-question "mean concave ponts?"))
+	(bind ?meanCP (ask-question "mean concave points?"))
 	(assert (meanConcavePoints ?meanCP))	
 )
+
 
 (defrule questionMeanConcavePoints
 	?m <- (meanConcavePoints ?meanCP)
 	=>
-	(if (> ?meanCP 0.5) then (bind ?perimeter (ask-question "worst perimeter?")) (assert (worstperimeter ?perimeter))
+	(if (> ?meanCP 0.05) then (bind ?perimeter (ask-question "worst perimeter?")) (assert (worstperimeter ?perimeter))
 	else then (bind ?radius (ask-question "worst radius?")) (assert (worstradius ?radius))
 	)
 	(retract ?m)	
 )
 
+
 (defrule questionWorstPerimeter
 	?p <- (worstperimeter ?perimeter)
 	=>
-	(if (> ?perimeter 114.5) then (assert (found false))
+	(if (> ?perimeter 114.45) then (assert (found false))
 	else then (bind ?texture (ask-question "worst texture?")) (assert (worsttexture ?texture))
 	)
 	(retract ?p)	
@@ -45,6 +47,7 @@
 	(retract ?t)	
 )
 
+
 (defrule questionWorstConcavePoints
 	?w <- (worstconcavepoints ?wCP)
 	=>
@@ -57,7 +60,7 @@
 (defrule questionPerimeterError
 	?p <- (perimeterError ?pError)
 	=>
-	(if (> ?pError 0.17) then (assert (found false))
+	(if (> ?pError 1.56) then (assert (found false))
 	else then (bind ?mRadius (ask-question "worst concave points?")) (assert (meanRadius ?mRadius))
 	)
 	(retract ?p)	
@@ -73,7 +76,6 @@
 	(retract ?m)	
 )
 
-// sampai sini tadi
 
 (defrule questionWorstRadius
 	?w <- (worstradius ?radius)
@@ -84,6 +86,7 @@
 	(retract ?w)	
 )
 
+
 (defrule questionMeanTexture
 	?m <- (meantexture ?mTexture)
 	=>
@@ -92,6 +95,7 @@
 	)
 	(retract ?m)	
 )
+
 
 (defrule questionConcvePointsError
 	?c <- (concavepointserror ?concavePE)
@@ -102,6 +106,7 @@
 	(retract ?c)	
 )
 
+
 (defrule questionRadiusError
 	?w <- (radiuserror ?rError)
 	=>
@@ -110,6 +115,7 @@
 	)
 	(retract ?w)	
 )
+
 
 (defrule questionMeanSmoothness
 	?m <- (meanSmoothness ?mSmoothness)
@@ -121,8 +127,6 @@
 )
 
 
-
-
 (defrule questionWorstTextureFromRadius
 	?w <- (worsttexturefromradius ?wTexture)
 	=>
@@ -131,6 +135,7 @@
 	)
 	(retract ?w)	
 )
+
 
 (defrule questionWorstArea
 	?w <- (worstarea ?wArea)
@@ -141,6 +146,7 @@
 	(retract ?w)	
 )
 
+
 (defrule questionMeanRadiusFromArea
 	?m <- (meanRadiusfromArea ?mRadius)
 	=>
@@ -149,6 +155,7 @@
 	)
 	(retract ?m)	
 )
+
 
 (defrule questionMeanTextureFromRadius
 	?m <- (meantexturefromradius ?mTexture)
@@ -160,17 +167,13 @@
 )
 
 
-
-
-
-
-
 (defrule matchFound
 	?f <- (found true)
 	=>
 	(retract ?f)
 	(printout t "Terprediksi Kanker Payudara" crlf)
 )
+
 
 (defrule matchNotFound
 	?f <- (found false)
