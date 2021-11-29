@@ -97,7 +97,7 @@
 )
 
 
-(defrule questionConcvePointsError
+(defrule questionConcavePointsError
 	?c <- (concavepointserror ?concavePE)
 	=>
 	(if (> ?concavePE 0.01) then  (assert (found true))
