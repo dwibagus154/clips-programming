@@ -61,7 +61,7 @@
 	?p <- (perimeterError ?pError)
 	=>
 	(if (> ?pError 1.56) then (assert (found false))
-	else then (bind ?mRadius (ask-question "worst concave points?")) (assert (meanRadius ?mRadius))
+	else then (bind ?mRadius (ask-question "mean radius?")) (assert (meanRadius ?mRadius))
 	)
 	(retract ?p)	
 )
@@ -178,5 +178,5 @@
 (defrule matchNotFound
 	?f <- (found false)
 	=>
-	(printout t "Terprediksi tidak terkena kangker payudara" crlf)
+	(printout t "Terprediksi Tidak Terkena Kanker Payudara" crlf)
 )
