@@ -70,8 +70,8 @@
 (defrule questionMeanRadius
 	?m <- (meanRadius ?mRadius)
 	=>
-	(if (> ?mRadius 13.34) then (assert (found false))
-	else then (assert (found true))
+	(if (> ?mRadius 13.34) then (assert (found true))
+	else then (assert (found false))
 	)
 	(retract ?m)	
 )
